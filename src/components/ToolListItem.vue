@@ -15,19 +15,14 @@
             </li>
         </ul>
 
-        <b-button 
-            variant="primary" 
-            class="mr-1"
-            @click="handleEditToolClick"
-        >
-            <b-icon-pencil></b-icon-pencil>
-        </b-button>
-        <b-button 
-            variant="danger"
-            @click="handleDeleteToolClick"
-        >
-            <b-icon-trash></b-icon-trash>
-        </b-button>
+        <div style="text-align: right;">
+            <b-button 
+                variant="danger"
+                @click="handleDeleteToolClick"
+            >
+                <b-icon-trash></b-icon-trash>
+            </b-button>
+        </div>
     </b-card>
 </template>
 
@@ -41,9 +36,6 @@ export default {
         url: { type: String, description: 'Tool URL' },
     },
     methods: {
-        handleEditToolClick () {
-            console.log('edit tool')
-        },
         handleDeleteToolClick () {
             console.log('delete tool')
         },
