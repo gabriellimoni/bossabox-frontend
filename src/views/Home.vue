@@ -44,16 +44,27 @@
         </template>
       </b-card>
     </b-container>
+
+    <b-modal v-model="openCreateToolForm" hide-footer title="Cadastrar Ferramenta">
+      <tool-form @close="openCreateToolForm = false" />
+    </b-modal>
   </div>
 </template>
 
 <script>
 import ToolListItem from '../components/ToolListItem'
+import ToolForm from '../components/ToolForm'
 
 export default {
   name: 'Home',
   components: {
     ToolListItem,
+    ToolForm,
+  },
+  data () {
+    return {
+      openCreateToolForm: false,
+    }
   },
   async mounted () {
     // Waiting for login workaround. Needs middleware
@@ -63,7 +74,9 @@ export default {
   },
   methods: {
     handleAddNewToolClick () {
-      console.log('Create New Tool')
+      this.$store.commit('toolForm/setCreatingMode')
+      this.$store.commit('toolForm/clear')
+      this.openCreateToolForm = true
     },
   },
   computed: {
