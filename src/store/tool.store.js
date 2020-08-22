@@ -11,7 +11,6 @@ const mutations = {
         state.tools.push(tool)
     },
     removeToolById (state, toolId) {
-        console.log(toolId)
         state.tools = state.tools.filter(tool => {
             return tool._id != toolId
         })
