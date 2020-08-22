@@ -5,8 +5,6 @@ const state = () => {
         _id: '',
         name: '',
         email: '',
-        password: '',
-        token: '',
     }
 }
 
@@ -17,12 +15,6 @@ const mutations = {
         state.name = name
         state.email = email
     },
-    setToken (state, token) {
-        state.token = token
-    },
-    setPassword (state, password) {
-        state.password = password
-    },
 }
 
 const actions = {
@@ -31,15 +23,8 @@ const actions = {
             throw error.message
         })
 
-        commit('setToken', loginData.token)
-        commit('setUserData', loginData)
-    },
-    async refreshLogin ({ state, dispatch }) {
-        // Waiting refresh token backend implementation
-        await dispatch('login', {
-            email: state.email,
-            password: state.password,
-        })
+        commit('setUserData', loginData.user)
+        commit('token/setTokenData', loginData.token, { root: true })
     },
 }
 
