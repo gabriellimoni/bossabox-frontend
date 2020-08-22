@@ -8,6 +8,9 @@ export default {
     CREATE_TOOL_ERROR: {
         message: 'Erro ao criar ferramenta'
     },
+    DELETE_TOOL_ERROR: {
+        message: 'Erro ao deletar ferramenta'
+    },
 
     UNKNOW_ERROR: {
         message: 'Erro desconhecido',

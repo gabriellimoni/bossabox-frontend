@@ -17,3 +17,12 @@ export async function createTool (tool) {
 
     return data
 }
+
+export async function deleteToolById (toolId) {
+    await api.delete(`tools/${toolId}`).catch(error => {
+        // Todo - handle error
+        throw errorList.DELETE_TOOL_ERROR
+    })
+
+    return true
+}
