@@ -5,8 +5,9 @@
         <template v-slot:header>
           <b-row>
             <b-col>
-              <h4 v-if="!loadingTools" class="mb-0">Lista de ferramentas</h4>
-              <h4 v-else class="mb-0">Carregando ferramentas...</h4>
+              <h4 v-if="errorLoading" class="mb-0">Erro ao listar ferramentas...</h4>
+              <h4 v-else-if="!loadingTools" class="mb-0">Lista de ferramentas</h4>
+              <h4 v-else-if="loadingTools" class="mb-0">Carregando ferramentas...</h4>
             </b-col>
             <b-col>
               <b-button 
@@ -66,15 +67,21 @@ export default {
     return {
       openCreateToolForm: false,
       loadingTools: false,
+      errorLoading: false,
     }
   },
   async mounted () {
     this.loadingTools = true
-    // Waiting for login workaround. Needs middleware
-    setTimeout(() => {
-      this.$store.dispatch('tool/loadAllTools')
-      this.loadingTools = false
-    }, 3000)
+    // Needs middleware
+    try {
+      await this.$store.dispatch('tool/loadAllTools')
+    } catch (error) {
+      this.errorLoading = true
+      // todo toast
+      console.log(error)
+      this.$router.push('/login')
+    }
+    this.loadingTools = false
   },
   methods: {
     handleAddNewToolClick () {
