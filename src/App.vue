@@ -10,14 +10,13 @@
 <script>
 export default {
   async created () {
-    // Just to hold user logged in... DO NOT DO THISSSS
+    // Just to hold user logged in while there is no user handling on frontend
     await this.$store.dispatch('user/login', {
       email: 'gabrielblimoni@gmail.com',
       password: 'gabriel123'
     })
-    this.$store.commit('user/setPassword', 'gabriel123')
     setInterval(async () => {
-      await this.$store.dispatch('user/refreshLogin')
+      await this.$store.dispatch('token/refreshToken')
     }, 1 * 1000 * 30)
     // endGambi
   }
