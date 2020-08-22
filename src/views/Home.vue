@@ -33,6 +33,7 @@
                 :description="tool.description"
                 :id="tool._id"
                 :url="tool.link"
+                :tags="tool.tags"
               />
             </b-col>
           </b-row>

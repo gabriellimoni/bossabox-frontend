@@ -7,6 +7,13 @@
         </template>
 
         <p v-html="description"></p>
+        <ul>
+            <li v-for="(tag, i) of tags" :key="i">
+                <b-badge variant="info">
+                    {{ tag }}
+                </b-badge>
+            </li>
+        </ul>
 
         <b-button 
             variant="primary" 
@@ -30,6 +37,7 @@ export default {
         id: { type: String, description: 'Tool ID', required: true },
         name: { type: String, description: 'Tool name', required: true },
         description: { type: String, description: 'Tool description' },
+        tags: { type: Array, description: 'Tool tags' },
         url: { type: String, description: 'Tool URL' },
     },
     methods: {
@@ -43,6 +51,15 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+ul {
+    display: flex;
+    align-items: center;
+    padding: 0;
+}
 
+li {
+    list-style-type: none;
+    margin-right: 5px;
+}
 </style>
