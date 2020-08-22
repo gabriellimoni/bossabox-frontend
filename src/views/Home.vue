@@ -21,12 +21,18 @@
 
         <template>
           <b-row>
-            <b-col sm="12" md="6" class="mb-3">
+            <b-col 
+              sm="12" 
+              md="6" 
+              class="mb-3" 
+              v-for="tool of tools"
+              :key="tool._id"
+            >
               <tool-list-item 
-                name="Ferramenta Doida"
-                description="descrição ... descrição ... descrição ... descrição ... descrição ... descrição ... descrição ... descrição ... descrição ... descrição ... "
-                id="k1j23i12i3ji210239821uijn"
-                url="//google.com"
+                :name="tool.title"
+                :description="tool.description"
+                :id="tool._id"
+                :url="tool.link"
               />
             </b-col>
           </b-row>
@@ -48,11 +54,22 @@ export default {
   components: {
     ToolListItem,
   },
+  async mounted () {
+    // Waiting for login workaround. Needs middleware
+    setTimeout(() => {
+      this.$store.dispatch('tool/loadAllTools')
+    }, 3000)
+  },
   methods: {
     handleAddNewToolClick () {
       console.log('Create New Tool')
     },
   },
+  computed: {
+    tools () {
+      return this.$store.state.tool.tools
+    },
+  }
 }
 </script>
 
