@@ -75,7 +75,6 @@ export default {
             this.close()
         },
         close () {
-            console.log('a')
             this.$emit('close')
         },
         ...mapMutations([
