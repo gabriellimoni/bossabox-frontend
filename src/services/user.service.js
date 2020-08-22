@@ -1,4 +1,4 @@
-import api from './api.service'
+import api, { setAuthToken } from './api.service'
 import errorList from '../config/errorList'
 
 export async function loginByEmailAndPassword (email, password) {
@@ -14,5 +14,6 @@ export async function loginByEmailAndPassword (email, password) {
         throw errorList.UNKNOW_ERROR
     })
 
+    setAuthToken(loginData.token)
     return loginData
 }
