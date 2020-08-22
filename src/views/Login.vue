@@ -49,9 +49,14 @@ export default {
   name: 'Login',
   data () {
     return {
-      email: '',
-      password: '',
+      email: 'gabrielblimoni@gmail.com',
+      password: 'gabriel123',
     }
+  },
+  mounted () {
+    const access_token = this.$store.state.token.accessToken
+    if (!access_token) return
+    this.$router.push('/')
   },
   methods: {
     async handleTryLogin () {
