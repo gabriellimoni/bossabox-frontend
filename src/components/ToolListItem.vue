@@ -37,7 +37,7 @@ export default {
     },
     methods: {
         handleDeleteToolClick () {
-            console.log('delete tool')
+            this.$store.dispatch('tool/deleteTool', this.id)
         },
     },
 }
