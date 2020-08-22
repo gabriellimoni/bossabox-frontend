@@ -1,18 +1,16 @@
 import api from './api.service'
-import errorList from '../config/errorList'
+import { handleError } from './error.service'
 
 export async function getTools () {
     const { data: toolsData } = await api.get('tools').catch(error => {
-        // Todo - handle error
-        throw 'Error listing'
+        return handleError(error)
     })
     return toolsData
 }
 
 export async function createTool (tool) {
     const { data } = await api.post('tools', tool).catch(error => {
-        // Todo - handle error
-        throw errorList.CREATE_TOOL_ERROR
+        return handleError(error)
     })
 
     return data
@@ -20,8 +18,7 @@ export async function createTool (tool) {
 
 export async function deleteToolById (toolId) {
     await api.delete(`tools/${toolId}`).catch(error => {
-        // Todo - handle error
-        throw errorList.DELETE_TOOL_ERROR
+        return handleError(error)
     })
 
     return true
